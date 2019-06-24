@@ -10,18 +10,16 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends default-lib
 
 WORKDIR /usr/local
 
-RUN mkdir node && \
-    curl -LO --compressed "https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-x64.tar.xz" && \
-    tar -xJf "node-v10.16.0-linux-x64.tar.xz" -C node --strip-components=1 --no-same-owner && \
+RUN curl -LO --compressed "https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-x64.tar.xz" && \
+    tar -xJf "node-v10.16.0-linux-x64.tar.xz" --strip-components=1 --no-same-owner && \
     rm -f "node-v10.16.0-linux-x64.tar.xz"
 
 RUN curl -LO --compressed "https://dl.google.com/go/go1.11.linux-amd64.tar.gz" && \
-    tar -xf "go1.11.linux-amd64.tar.gz" && \
+    tar -xzf "go1.11.linux-amd64.tar.gz" --strip-components=1 --no-same-owner && \
     rm -f "go1.11.linux-amd64.tar.gz"
 
-RUN mkdir yarn && \
-    curl -LO --compressed "https://yarnpkg.com/downloads/1.16.0/yarn-v1.16.0.tar.gz" && \
-    tar -xJf "yarn-v1.16.0.tar.gz" -C node --strip-components=1 --no-same-owner && \
+RUN curl -LO --compressed "https://yarnpkg.com/downloads/1.16.0/yarn-v1.16.0.tar.gz" && \
+    tar -xzf "yarn-v1.16.0.tar.gz" --strip-components=1 --no-same-owner && \
     rm -f "yarn-v1.16.0.tar.gz"
 
 COPY requirements.txt /
