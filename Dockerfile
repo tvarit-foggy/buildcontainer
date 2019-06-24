@@ -4,7 +4,7 @@ ENV GOROOT=/usr/local
 ENV GOPATH=/go
 ENV PATH=/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-RUN apt-get update && apt-get install -qq -y --no-install-recommends default-libmysqlclient-dev git curl build-essential && \
+RUN apt-get update && apt-get install -qq -y --no-install-recommends default-libmysqlclient-dev git curl build-essential xz-utils && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
